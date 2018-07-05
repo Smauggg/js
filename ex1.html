@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JavaScript 1</title>
+</head>
+<body>
+  <h2 id="array"></h2>
+  <h3>
+  1. Search<br/>
+  2. Find max<br/>
+  3. Sum<br/>
+  4. Sort<br/>
+  </h3>
+
+  <input type="number" id="choose">
+  <button type="button" onclick="Submit()">Submit</button><br/>
+
+  <div id="search" style="visibility:hidden;">
+  <input type="number" id="value">
+  <button type="button" onclick="Search()">Search</button>
+  </div>
+
+  <h2 id="result"></h2>
+  </form>
+
+  <script type="text/javascript">
+
+    var array = [];
+    for (i = 0; i < 10; i++) {
+      array.push(Math.floor((Math.random() * 10) + 1));
+    }
+    document.getElementById("array").innerHTML = "Array is: [" + array +"]";
+
+    //Submit click event
+    function Submit(){
+      var c = parseInt(document.getElementById("choose").value);
+
+      switch(c){
+        case 1: {
+          document.getElementById("search").style.visibility = "visible";
+          break;
+        }
+        case 2: {
+          document.getElementById("search").style.visibility = "hidden";
+          Max(array);
+          break;
+        }
+        case 3: {
+          document.getElementById("search").style.visibility = "hidden";
+          Sum();
+          break;
+        }
+        case 4: {
+          document.getElementById("search").style.visibility = "hidden";
+          Sort();
+          break;
+        }
+        default: {
+          alert("Enter again!");
+        }
+      }
+  }
+
+    function Search(){
+      var x = parseInt(document.getElementById("value").value);
+
+      for (var i = 0; i < 10; i++) {
+        if(x == array[i])
+          return document.getElementById("result").innerHTML = "Result: Exist"
+      }
+      return document.getElementById("result").innerHTML = "Result: Non-exist"
+    }
+
+    function Max(){
+      var max = array[0];
+      for (var i = 1; i < 10; i++) {
+        if(max < array[i]) max = array[i];
+      }
+      document.getElementById("result").innerHTML = "Result: " + max;
+    }
+
+    function Sum(){
+      var sum = 0;
+      for (var i = 0; i < 10; i++) {
+        sum += array[i];
+      }
+      document.getElementById("result").innerHTML = "Result: " + sum;
+    }
+
+    function Sort(){
+      array.sort(function(a, b){return b - a});
+      document.getElementById("result").innerHTML = "Result: [" + array +"]";
+    }
+  </script>
+</body>
+</html>
